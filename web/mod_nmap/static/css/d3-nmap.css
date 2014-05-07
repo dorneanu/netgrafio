@@ -1,0 +1,50 @@
+.node {
+  fill: #CCC;
+  color: #000;
+  stroke-width: 1.5px;
+}
+
+.node.status circle {
+  fill: #00FF00;
+}
+
+.node.host circle {
+  fill: #0000FF;
+}
+
+.node.proto circle {
+  fill: #FFFF00;
+}
+
+.node.port circle {
+  fill: #8B008B;
+}
+
+path.link {
+  stroke: #CCC;
+  stroke-width: 1px;
+  opacity: 0.6;
+  cursor: default;
+}
+
+path.link.active,
+path.active {
+  stroke: #FF00FF;
+}
+
+path.inactive {
+  stroke: #CCC;
+  z-index: 1;
+}
+
+marker#end {
+  fill: #000;
+  z-index: 999;
+}
+
+circle {
+  stroke: #000;
+  stroke-width: 1.5px;
+  z-index: 999;
+}
+

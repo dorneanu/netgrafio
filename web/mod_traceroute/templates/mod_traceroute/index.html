@@ -1,0 +1,120 @@
+{% extends "core/layout.html" %}
+{% block custom_head %}
+
+    <!-- Page-Level Plugin CSS -->
+    <link href="{{ url_for('static', filename='css/plugins/morris/morris-0.4.3.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/dataTables/dataTables.bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/google-code-prettify/prettify.css') }}" rel="stylesheet">
+    <link href="{{ url_for('mod_traceroute.static', filename='css/d3-traceroute.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+{% block main %}
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Network traceroute analysis</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            D3 Graph
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="d3-traceroute-graph"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Informational stuff
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#intro" data-toggle="tab">Intro</a></li>
+                                <li><a href="#collect-data" data-toggle="tab">Collect data</a></li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="intro">
+                                    <h4>Intro</h4>
+                                    <p>Visualize routes using a graph. Basically we're using a D3 force layout but arranged as a
+                                       force-directed tree as shown <a href="http://bl.ocks.org/mbostock/1138500">here</a>. This way
+                                       you can track the network packages within several paths.
+                                    </p>
+                                    <p>Check out the CSS file to see the circles color legend.</p>
+                                </div>
+                                <div class="tab-pane fade" id="collect-data">
+                                    <h4>Collecting data</h4>
+                                    <p>You'll need some data to visualize. Open a shell and paste this into it (make sure you adapt the command line to your system, e.g. change the NIC interface name):</p>
+                                    <pre class="prettyprint">$ stdbuf -oL traceroute dornea.nu | egrep -w --line-buffered  '^ [0-9]{1,3} [^*\].*ms.*' | stdbuf -oL awk -f web/mod_traceroute/scripts/traceroute.awk | stdbuf -oL sed 's/"/\\"/g' | xargs -n 1 -I % sh -c "echo '%' | nc localhost 8081"
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Connection Table
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive" id="d3-table">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+{% endblock %}
+
+{% block custom_scripts %}
+
+    <!-- Page-Level Plugin Scripts -->
+    <script src="{{ url_for('static', filename='js/plugins/morris/raphael-2.1.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/morris/morris.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/D3/d3.v3.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/D3/d3.graph.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/dataTables/jquery.dataTables.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/dataTables/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/google-code-prettify/prettify.js') }}"></script>
+
+    <!-- Page-Level Demo Scripts -->
+    <script src="{{ url_for('mod_traceroute.static', filename='js/d3-traceroute.js') }}"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').dataTable();
+    });
+    </script>
+    <script>
+    !function ($) {
+        $(function(){
+            window.prettyPrint && prettyPrint()
+        })
+    }(window.jQuery)
+    </script>
+
+{% endblock %}

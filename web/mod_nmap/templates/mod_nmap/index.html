@@ -1,0 +1,95 @@
+{% extends "core/layout.html" %}
+{% block custom_head %}
+
+    <!-- Page-Level Plugin CSS -->
+    <link href="{{ url_for('static', filename='css/plugins/morris/morris-0.4.3.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/dataTables/dataTables.bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/google-code-prettify/prettify.css') }}" rel="stylesheet">
+    <link href="{{ url_for('mod_nmap.static', filename='css/d3-nmap.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+{% block main %}
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Nmap results visualisation</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            D3 Graph
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="d3-nmap-graph"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Informational stuff
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#intro" data-toggle="tab">Intro</a></li>
+                                <li><a href="#collect-data" data-toggle="tab">Collect data</a></li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="intro">
+                                    <h4>Intro</h4>
+                                    <p>Visualize nmap verbose message and take that information to build a graph. In this example the nmap verbose output will be parsed
+                                    for open ports and invididual graph will be built for that host.
+                                    </p>
+                                </div>
+                                <div class="tab-pane fade" id="collect-data">
+                                    <h4>Collecting data</h4>
+                                    <p>You'll need some data to visualize. Open a shell and paste this into it (make sure you adapt the command line to your system, e.g. change the NIC interface name):</p>
+                                    <pre class="prettyprint">$ stdbuf -oL nmap -v scanme.nmap.org | stdbuf -oL egrep "open port"  |  stdbuf -oL awk -f web/mod_nmap/scripts/open_ports.awk |  stdbuf -oL sed 's/"/\\"/g' | xargs -n 1 -I % sh -c "echo '%' | nc localhost 8081"
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+            </div>
+            <!-- /.row -->
+{% endblock %}
+
+{% block custom_scripts %}
+
+    <!-- Page-Level Plugin Scripts -->
+    <script src="{{ url_for('static', filename='js/plugins/morris/raphael-2.1.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/morris/morris.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/D3/d3.v3.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/D3/d3.graph.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/dataTables/jquery.dataTables.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/dataTables/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/google-code-prettify/prettify.js') }}"></script>
+
+    <!-- Page-Level Demo Scripts -->
+    <script src="{{ url_for('mod_nmap.static', filename='js/d3-nmap.js') }}"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    !function ($) {
+        $(function(){
+            window.prettyPrint && prettyPrint()
+        })
+    }(window.jQuery)
+    </script>
+
+{% endblock %}

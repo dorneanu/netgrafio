@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>lib package &mdash; netgrafio 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="netgrafio 0.1.0 documentation" href="../index.html" />
+    <link rel="prev" title="web.mod_traceroute package" href="web.mod_traceroute.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="web.mod_traceroute.html" title="web.mod_traceroute package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">netgrafio 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="lib-package">
+<h1>lib package<a class="headerlink" href="#lib-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-lib.TCPServer">
+<span id="lib-tcpserver-module"></span><h2>lib.TCPServer module<a class="headerlink" href="#module-lib.TCPServer" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-TCPServer"></span><dl class="class">
+<dt id="lib.TCPServer.JSONServer">
+<em class="property">class </em><tt class="descclassname">lib.TCPServer.</tt><tt class="descname">JSONServer</tt><big>(</big><em>host</em>, <em>port</em>, <em>in_queue=&lt;queue.Queue object at 0x7fcade9bd5f8&gt;</em><big>)</big><a class="headerlink" href="#lib.TCPServer.JSONServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>TCP Server waiting for JSON packets</p>
+<dl class="method">
+<dt id="lib.TCPServer.JSONServer.start">
+<tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.TCPServer.JSONServer.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts JSON server</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lib.TCPServer.TCPServer">
+<em class="property">class </em><tt class="descclassname">lib.TCPServer.</tt><tt class="descname">TCPServer</tt><big>(</big><em>server_address</em>, <em>RequestHandlerClass</em>, <em>in_queue=&lt;queue.Queue object at 0x7fcade9ef7f0&gt;</em><big>)</big><a class="headerlink" href="#lib.TCPServer.TCPServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">socketserver.ThreadingTCPServer</span></tt></p>
+<p>Custom TCP server</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lib.TCPServer.TCPServerHandler">
+<em class="property">class </em><tt class="descclassname">lib.TCPServer.</tt><tt class="descname">TCPServerHandler</tt><big>(</big><em>request</em>, <em>client_address</em>, <em>server</em><big>)</big><a class="headerlink" href="#lib.TCPServer.TCPServerHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">socketserver.BaseRequestHandler</span></tt></p>
+<p>Waiting for incoming (JSON) data</p>
+<dl class="method">
+<dt id="lib.TCPServer.TCPServerHandler.handle">
+<tt class="descname">handle</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.TCPServer.TCPServerHandler.handle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for incoming JSON packets and pre-process them</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lib.TCPServer.TCPServerHandler.process_data">
+<tt class="descname">process_data</tt><big>(</big><em>data</em><big>)</big><a class="headerlink" href="#lib.TCPServer.TCPServerHandler.process_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process received data</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>data(bytes): Incoming data</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lib.WebServer">
+<span id="lib-webserver-module"></span><h2>lib.WebServer module<a class="headerlink" href="#module-lib.WebServer" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-WebServer"></span><dl class="class">
+<dt id="lib.WebServer.Application">
+<em class="property">class </em><tt class="descclassname">lib.WebServer.</tt><tt class="descname">Application</tt><a class="headerlink" href="#lib.WebServer.Application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">tornado.web.Application</span></tt></p>
+<p>Create new Flask application using Tornado&#8217;s WSGIContainer</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lib.WebServer.HTTPServer">
+<em class="property">class </em><tt class="descclassname">lib.WebServer.</tt><tt class="descname">HTTPServer</tt><big>(</big><em>host</em>, <em>port</em><big>)</big><a class="headerlink" href="#lib.WebServer.HTTPServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>Simple http server using Tornado</p>
+<dl class="method">
+<dt id="lib.WebServer.HTTPServer.start_server">
+<tt class="descname">start_server</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.WebServer.HTTPServer.start_server" title="Permalink to this definition">¶</a></dt>
+<dd><p>Server will start a new thread and listen for incoming connections</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lib.WebServer.HelloHandler">
+<em class="property">class </em><tt class="descclassname">lib.WebServer.</tt><tt class="descname">HelloHandler</tt><big>(</big><em>application</em>, <em>request</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lib.WebServer.HelloHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">tornado.web.RequestHandler</span></tt></p>
+<p>Dummy request handler</p>
+<dl class="method">
+<dt id="lib.WebServer.HelloHandler.get">
+<tt class="descname">get</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.WebServer.HelloHandler.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lib.WebServer.WebServer">
+<em class="property">class </em><tt class="descclassname">lib.WebServer.</tt><tt class="descname">WebServer</tt><big>(</big><em>host</em>, <em>port</em><big>)</big><a class="headerlink" href="#lib.WebServer.WebServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>Web server for main application</p>
+<dl class="method">
+<dt id="lib.WebServer.WebServer.start">
+<tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.WebServer.WebServer.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the web server in own thread</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lib.WebSocketServer">
+<span id="lib-websocketserver-module"></span><h2>lib.WebSocketServer module<a class="headerlink" href="#module-lib.WebSocketServer" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-WebSocket"></span><dl class="class">
+<dt id="lib.WebSocketServer.Application">
+<em class="property">class </em><tt class="descclassname">lib.WebSocketServer.</tt><tt class="descname">Application</tt><a class="headerlink" href="#lib.WebSocketServer.Application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">tornado.web.Application</span></tt></p>
+<p>Tornado application</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lib.WebSocketServer.IndexPageHandler">
+<em class="property">class </em><tt class="descclassname">lib.WebSocketServer.</tt><tt class="descname">IndexPageHandler</tt><big>(</big><em>application</em>, <em>request</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lib.WebSocketServer.IndexPageHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">tornado.web.RequestHandler</span></tt></p>
+<p>Default index page handler. Not implemented yet.</p>
+<dl class="method">
+<dt id="lib.WebSocketServer.IndexPageHandler.get">
+<tt class="descname">get</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.WebSocketServer.IndexPageHandler.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lib.WebSocketServer.WebSocketHandler">
+<em class="property">class </em><tt class="descclassname">lib.WebSocketServer.</tt><tt class="descname">WebSocketHandler</tt><big>(</big><em>application</em>, <em>request</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">tornado.websocket.WebSocketHandler</span></tt></p>
+<p>Handle default WebSocket connections</p>
+<dl class="attribute">
+<dt id="lib.WebSocketServer.WebSocketHandler.logger">
+<tt class="descname">logger</tt><em class="property"> = &lt;logging.Logger object at 0x7fcadddf1748&gt;</em><a class="headerlink" href="#lib.WebSocketServer.WebSocketHandler.logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="lib.WebSocketServer.WebSocketHandler.on_close">
+<tt class="descname">on_close</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketHandler.on_close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connection was closed</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lib.WebSocketServer.WebSocketHandler.on_message">
+<tt class="descname">on_message</tt><big>(</big><em>message</em><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketHandler.on_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data income event callback</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lib.WebSocketServer.WebSocketHandler.open">
+<tt class="descname">open</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketHandler.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>New connection has been established</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lib.WebSocketServer.WebSocketServer">
+<em class="property">class </em><tt class="descclassname">lib.WebSocketServer.</tt><tt class="descname">WebSocketServer</tt><big>(</big><em>host</em>, <em>port</em>, <em>in_queue=&lt;queue.Queue object at 0x7fcadddf17b8&gt;</em><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">builtins.object</span></tt></p>
+<p>Create tornado HTTP server serving our application</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Uses tornado as backend.</p>
+</div>
+<dl class="method">
+<dt id="lib.WebSocketServer.WebSocketServer.collect_data">
+<tt class="descname">collect_data</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketServer.collect_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for data  in individual thread</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lib.WebSocketServer.WebSocketServer.collector_process_data">
+<tt class="descname">collector_process_data</tt><big>(</big><em>data</em><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketServer.collector_process_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process incoming data and send it to all available clients</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>data: Received data</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lib.WebSocketServer.WebSocketServer.start">
+<tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketServer.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the server</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The server will listen for incoming JSON packets and pass them
+to all clients connected to the WebSocket.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lib.WebSocketServer.WebSocketServer.start_collector">
+<tt class="descname">start_collector</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketServer.start_collector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts collecting packages</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lib.WebSocketServer.WebSocketServer.start_server">
+<tt class="descname">start_server</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketServer.start_server" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the HTTP server</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lib">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lib" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">lib package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-lib.TCPServer">lib.TCPServer module</a></li>
+<li><a class="reference internal" href="#module-lib.WebServer">lib.WebServer module</a></li>
+<li><a class="reference internal" href="#module-lib.WebSocketServer">lib.WebSocketServer module</a></li>
+<li><a class="reference internal" href="#module-lib">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="web.mod_traceroute.html"
+                        title="previous chapter">web.mod_traceroute package</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/apidoc/lib.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="web.mod_traceroute.html" title="web.mod_traceroute package"
+             >previous</a> |</li>
+        <li><a href="../index.html">netgrafio 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Victor Dorneanu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

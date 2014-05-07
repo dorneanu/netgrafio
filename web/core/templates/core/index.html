@@ -1,0 +1,188 @@
+{% extends "core/layout.html" %}
+{% block custom_head %}
+
+    <!-- Page-Level Plugin CSS -->
+    <link href="{{ url_for('static', filename='css/plugins/morris/morris-0.4.3.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/demo/d3/d3-traffic-analysis.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/dataTables/dataTables.bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/google-code-prettify/prettify.css') }}" rel="stylesheet">
+    <link href="{{ url_for('core.static', filename='css/demo/netgrafio/netgrafio-intro.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+{% block main %}
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Welcome to netgrafio!</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Why? Don't you have better things to do?
+                        </div>
+                        <div class="panel-body">
+                            <p>The whole project was basically a wish I had during some <b>network analysis</b>: I wanted to visualize my results in some fancier way. There were a lot of dependencies between several hosts and I'm not good at reading raw packet data.  And since <b>graphs</b> are an excellent data structure to represent (computer) networks I've decided to begin my journey.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            D3? Never heard of!
+                        </div>
+                        <div class="panel-body">
+                            <p><a href="http://d3js.org/">D3</a> stands for <b>D</b>ata-<b>D</b>riven <b>D</b>ocuments. Its basically a JavaScript library aimed to manipulate "documents based on data". A neat side-effect of using JavaScript: You can use a browser to visualize your data. No need for extra GUI, clients whatever. There are douzens of useful examples how to use D3, especially <b>force layouts</b> which are ment to implement graphs.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            Meet netgrafio!
+                        </div>
+                        <div class="panel-body">
+                            <p><b>netgrafio</b> provides more or less tools and libraries to visualize your data regardless of its type. I tried to make the libraries OOP-friendly but as you may know: JS and OOP is really a pain. In fact I had to code a lot of JS (for the first time in my life as a coder:D). Its not perfect and it might be buggy. But it works for me.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-4 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">How does it work?</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+             <div class="row">
+                <div class="col-lg-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            netgrafio explained using D3
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div id="d3-explain-graph"></div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Informational stuff
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#intro" data-toggle="tab">Intro</a></li>
+                                <li><a href="#run" data-toggle="tab">Run</a></li>
+                                <li><a href="#collect-data" data-toggle="tab">Collect data</a></li>
+                                <li><a href="#requirements" data-toggle="tab">Requirements</a></li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="intro">
+                                    <h4>Intro</h4>
+                                    <p>In order to show you how <b>netgrafio</b> works I thought I could explain it using a graph. "Explain your tool using your tool", yeah right! Click the nodes for further information. Feel free to <b>drag</b> the nodes or to <b>zoom</b> in and out.
+                                    </p>
+                                    <p><b>netgrafio</b> at a glance:
+                                    </p>
+                                    <ul>
+                                        <li><div><b>main application</b></div>
+                                            creates sockets and fires up the web application</li>
+                                        <li><div><b>TCP socket</b></div>Listens for incoming packets (JSON)</li>
+                                        <li><div><b>Web Socket</b></div>Used by the web application to receive data</li>
+                                        <li><div><b>Web Application</b></div>Visualizes incoming packets using D3</li>
+                                        <li><div><b>data source</b></div>command line, script etc.</li>
+
+                                    </ul>
+                                </div>
+                                <div class="tab-pane fade" id="run">
+                                    <h4>Run</h4>
+                                    <p><b>virtualenv</b> is used to run the application in an isolated environment. You'll first have to install the dependencies. In the base directory run:</p>
+                                    <pre class="prettyprint" >$ pip install -r requirements.pip</pre>
+                                    Afterwards you'll have to activate the virtual env:
+                                    <pre class="prettyprint" >$ source env/bin/active</pre>
+                                    Now you can fire up the main application:
+                                    <pre class="prettyprint" >$ python netgrafio.py</pre>
+                                </div>
+                                <div class="tab-pane fade" id="collect-data">
+                                    <h4>Collecting data</h4>
+                                    <p>You data source could be almost everything: a NIC interface, PCAP file, JSON file, random file etc. Have a look at the modules provided in order to get an idea how to use this application. In fact it's up to you to define how your data should look like. <b>netgrafio</b> will just take your data, analyze it and then try to visualize it.</p>
+                                </div>
+                                <div class="tab-pane fade" id="requirements">
+                                    <h4>Python</h4>
+                                    <ul>
+                                        <li><a href="https://www.python.org/">Python 3.x</a></li>
+                                        <li><a href="http://www.pip-installer.org">PIP</a></li>
+                                        <li><a href="http://www.virtualenv.org/">virtualenv</a></li>
+                                        <li><a href="http://flask.pocoo.org/">Flask</a></li>
+                                        <li><a href="http://www.tornadoweb.org/en/stable/">Tornado</a></li>
+                                    </ul>
+                                    <h4>JavaScript</h4>
+                                    <ul>
+                                        <li><a href="http://d3js.org/">D3</a></li>
+                                        <li><a href="http://sciactive.github.io/pnotify/">PNotify</a></li>
+                                        <li><a href="https://datatables.net/">DataTables</a></li>
+                                        <li><a href="https://code.google.com/p/google-code-prettify/">Google Code Prettify</a></li>
+                                        <li><a href="http://onehackoranother.com/projects/jquery/tipsy/">Tipsy</a></li>
+                                    </ul>
+                                    <h4>Misc</h4>
+                                    <ul>
+                                        <li>a browser</li>
+                                        <li>shell utilities/tools: cat, awk, sed</li>
+                                        <li>your brain</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+            </div>
+            <!-- /.row -->
+{% endblock %}
+
+{% block custom_scripts %}
+
+    <!-- Page-Level Plugin Scripts -->
+    <script src="{{ url_for('static', filename='js/plugins/morris/raphael-2.1.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/morris/morris.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/D3/d3.v3.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/D3/d3.graph.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/dataTables/jquery.dataTables.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/dataTables/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/google-code-prettify/prettify.js') }}"></script>
+
+    <!-- Page-Level Demo Scripts -->
+    <script src="{{ url_for('core.static', filename='js/demo/netgrafio/netgrafio-intro.js') }}"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').dataTable();
+    });
+    </script>
+    <script>
+    !function ($) {
+        $(function(){
+            window.prettyPrint && prettyPrint()
+        })
+    }(window.jQuery)
+    </script>
+
+{% endblock %}

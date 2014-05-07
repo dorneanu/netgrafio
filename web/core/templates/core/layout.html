@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>netgrafio 0.1</title>
+
+    <!-- Core CSS - Include with every page -->
+    <link href="{{ url_for('core.static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('core.static', filename='font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ url_for('core.static', filename='css/plugins/pnotify/jquery.pnotify.default.css') }}" rel="stylesheet">
+    <link href="{{ url_for('core.static', filename='css/plugins/tipsy/tipsy.css') }}" rel="stylesheet">
+
+    <!-- SB Admin CSS - Include with every page -->
+    <link href="{{ url_for('core.static', filename='css/sb-admin.css') }}" rel="stylesheet">
+    <link href="{{ url_for('core.static', filename='css/social-buttons.css') }}" rel="stylesheet">
+
+    {% block custom_head %}
+    {% endblock %}
+
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index">netgrafio 0.1</a>
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <p>Social media: </p>
+                </li>
+                <li>
+                    <a href="http://twitter.com/victordorneanu">
+                        <i class="fa fa-twitter">
+                        </i>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://github.com/nullsecuritynet/netgrafio">
+                        <i class="fa fa-github">
+                        </i>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://youtube.com/user/victordorneanu">
+                        <i class="fa fa-youtube">
+                        </i>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://xing.to/dorneanu">
+                        <i class="fa fa-xing">
+                        </i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar-static-top -->
+
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href="/index"><i class="fa fa-dashboard fa-fw"></i> Intro</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-sitemap"></i> Modules<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="/module/traceroute">01 - Traceroute Analysis</a>
+                            </li>
+                            <li>
+                                <a href="/module/netanalyzer">02 - Network Traffic Analysis</a>
+                            </li>
+                            <li>
+                                <a href="/module/nmap">03 - Nmap Results visualization</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                </ul>
+                <!-- /#side-menu -->
+            </div>
+            <!-- /.sidebar-collapse -->
+        </nav>
+        <!-- /.navbar-static-side -->
+
+        <div id="page-wrapper">
+
+          {% block main %}
+          {% endblock %}
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Core Scripts - Include with every page -->
+    <script src="{{ url_for('core.static', filename='js/jquery-1.10.2.js') }}"></script>
+    <script src="{{ url_for('core.static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('core.static', filename='js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ url_for('core.static', filename='js/plugins/pnotify/jquery.pnotify.min.js') }}"></script>
+    <script src="{{ url_for('core.static', filename='js/plugins/tipsy/jquery.tipsy.js') }}"></script>
+
+    <!-- SB Admin Scripts - Include with every page -->
+    <script src="{{ url_for('core.static', filename='js/sb-admin.js') }}"></script>
+
+    {% block custom_scripts %}
+    {% endblock %}
+
+</body>
+</html>

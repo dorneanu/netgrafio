@@ -1,0 +1,651 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to netgrafio’s documentation! &mdash; netgrafio 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="netgrafio 0.1.0 documentation" href="#" />
+    <link rel="next" title="web package" href="apidoc/web.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="apidoc/web.html" title="web package"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">netgrafio 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="welcome-to-netgrafio-s-documentation">
+<h1>Welcome to netgrafio&#8217;s documentation!<a class="headerlink" href="#welcome-to-netgrafio-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="apidoc/web.html">web package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/web.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/web.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/web.html#module-web.FlaskApp">web.FlaskApp module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/web.html#module-web">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apidoc/lib.html">lib package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/lib.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/lib.html#module-lib.TCPServer">lib.TCPServer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/lib.html#module-lib.WebServer">lib.WebServer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/lib.html#module-lib.WebSocketServer">lib.WebSocketServer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apidoc/lib.html#module-lib">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="components">
+<h1>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h1>
+<p>In order to understand how <strong>netgrafio</strong> works have a look at the following graph:</p>
+<p class="graphviz">
+<img src="_images/graphviz-93e300fb6901fe30befe0b2f548acade4ca18b09.png" alt="digraph foo {
+   TCPServer [shape = box, style = filled, color = yellow];
+   WebSocketServer [shape = box, style = filled, color = yellow];
+   FlaskApp [shape = box, style = filled, color = yellow];
+
+   &quot;netgrafio&quot; -&gt; &quot;TCP Socket&quot;;
+   &quot;netgrafio&quot; -&gt; &quot;Web Socket&quot;;
+   &quot;netgrafio&quot; -&gt; &quot;Web Application&quot;;
+
+   edge [color = red];
+   &quot;TCP Socket&quot; -&gt; TCPServer;
+   &quot;Web Socket&quot; -&gt; WebSocketServer;
+   &quot;Web Application&quot; -&gt; FlaskApp;
+
+   edge [color = green];
+   TCPServer -&gt; &quot;lib/TCPServer.py&quot;;
+   WebSocketServer -&gt; &quot;lib/WebSocketServer.py&quot;;
+   FlaskApp -&gt; &quot;lib/WebServer.py&quot;;
+   FlaskApp -&gt; &quot;web/FlaskApp.py&quot;;
+   FlaskApp -&gt; &quot;web/core/*&quot;;
+   FlaskApp -&gt; &quot;web/mod_*/*&quot;
+}" />
+</p>
+</div>
+<div class="section" id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<p>Make sure you have installed all the requirements on your system (specified in <strong>README.md</strong>).  Afterwards you can clone this project:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git clone https://github.com/nullsecuritynet/netgrafio
+$ cd netgrafio
+</pre></div>
+</div>
+<p>Now you&#8217;ll need to setup a isolated python environment using <em>virtualenv</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ virtualenv env
+Using base prefix &#39;/usr&#39;
+New python executable in env/bin/python3
+Also creating executable in env/bin/python
+Installing setuptools, pip...done.
+</pre></div>
+</div>
+<p>Make sure to activate the virtual environment:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ source env/bin/activate
+</pre></div>
+</div>
+<p>Having set the virtualenv environment let&#8217;s install some missing packages:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ pip install -r env/requirements.pip
+</pre></div>
+</div>
+<p>Now you&#8217;re ready to start netgrafion and have some fun.</p>
+<p>These are the basic parameters:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ python netgrafio.py -h
+usage: netgrafio.py [-h] [--tcp-port TCP_PORT] [--ws-port WS_PORT]
+                    [--web-port WEB_PORT] [--host HOST]
+
+netgrafio - visualize your network
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --tcp-port TCP_PORT  Specify TCP port to listen for JSON packets (default:
+                       8081)
+  --ws-port WS_PORT    Specify WebSocket port to send JSON data to (default:
+                       8080)
+  --web-port WEB_PORT  Specify web port to server web application (default:
+                       5000)
+  --host HOST          Specify host to bind socket on (default: 127.0.0.1)
+</pre></div>
+</div>
+<p>If you start netgrafio without any arguments, then you&#8217;ll have a</p>
+<ul class="simple">
+<li><em>TCP-Socket</em> listening on port 8081</li>
+<li><em>WebSocket</em> listening on port 8080</li>
+<li><em>Web-Application</em> available at <a class="reference external" href="http://localhost:5000">http://localhost:5000</a></li>
+</ul>
+<p>After starting <strong>netgrafio</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ python netgrafio.py
+2014-04-24 16:18:12,984 - INFO - [WebSocketServer] - Starting WebSocket server on port 8080
+2014-04-24 16:18:12,984 - INFO - [WebSocketServer] - Start collector server
+2014-04-24 16:18:12,985 - INFO - [WebSocketServer] - Waiting for incoming data ...
+2014-04-24 16:18:12,989 - INFO - [WebServer] - Listening on 5000
+2014-04-24 16:18:12,989 - INFO - [TCPServer] - Listening on 8081
+</pre></div>
+</div>
+<p>Now open your browser and navigate to <a class="reference external" href="http://localhost:5000">http://localhost:5000</a></p>
+</div>
+<div class="section" id="d3-graph">
+<h1>D3 Graph<a class="headerlink" href="#d3-graph" title="Permalink to this headline">¶</a></h1>
+<p>This section describes the basic API of <em>d3.graph.min.js</em>. It describes how to
+build a graph using D3.</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<dl class="class">
+<dt id="D3Graph">
+<em class="property">class </em><tt class="descname">D3Graph</tt><big>(</big><em>container</em><big>)</big><a class="headerlink" href="#D3Graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new D3 graph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
+<li><strong>container</strong> (<em>string</em>) &#8211; Specify the element in the DOM where to show the graph</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Instance of class <em>D3Graph</em> (SVG element)</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>myGraph = new D3Graph(&quot;#myElement&quot;);
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="D3Graph.init">
+<tt class="descclassname">D3Graph.</tt><tt class="descname">init</tt><big>(</big><big>)</big><a class="headerlink" href="#D3Graph.init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize the graph.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">myGraph</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="D3Graph.start">
+<tt class="descclassname">D3Graph.</tt><tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#D3Graph.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start the graph.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">myGraph</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="D3GraphController">
+<em class="property">class </em><tt class="descname">D3GraphController</tt><big>(</big><em>d3graph</em><big>)</big><a class="headerlink" href="#D3GraphController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Control the D3 graph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
+<li><strong>d3graph</strong> (<a class="reference internal" href="#D3Graph" title="D3Graph"><em>D3Graph</em></a>) &#8211; Object of type D3Graph.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Instance of class <em>D3GraphController</em></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>myGraph = new D3Graph(&quot;#myElement&quot;);
+graphController = new D3GraphController(myGraph);
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="D3GraphController.addNode">
+<tt class="descclassname">D3GraphController.</tt><tt class="descname">addNode</tt><big>(</big><em>nodeObject</em><big>)</big><a class="headerlink" href="#D3GraphController.addNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add new node to the graph.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first last simple">
+<li><strong>nodeObject</strong> (<em>object</em>) &#8211; Node object to be added to the graph</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">nodeObject</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;some_unique_id&quot;</span>
+   <span class="p">,</span><span class="s">&quot;class&quot;</span><span class="p">:</span> <span class="s">&quot;blue&quot;</span>
+   <span class="p">,</span><span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;This is my fancy name&quot;</span>
+<span class="p">};</span>
+
+<span class="n">graphController</span><span class="o">.</span><span class="n">addNode</span><span class="p">(</span><span class="n">nodeObject</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="D3GraphController.findNode">
+<tt class="descclassname">D3GraphController.</tt><tt class="descname">findNode</tt><big>(</big><em>id</em><big>)</big><a class="headerlink" href="#D3GraphController.findNode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find node by ID.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
+<li><strong>id</strong> (<em>number</em>) &#8211; ID of node to look up.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">If found the node object is returned.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="D3GraphController.addLink">
+<tt class="descclassname">D3GraphController.</tt><tt class="descname">addLink</tt><big>(</big><em>linkObject</em><big>)</big><a class="headerlink" href="#D3GraphController.addLink" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add new link between 2 nodes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first last simple">
+<li><strong>linkObject</strong> (<em>object</em>) &#8211; Link object</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>// Add nodes
+nodeObjectA = {
+    &quot;id&quot;: &quot;A&quot;
+   ,&quot;class&quot;: &quot;A&quot;
+   ,&quot;name&quot;: &quot;B&quot;
+};
+
+nodeObjectB = {
+    &quot;id&quot;: &quot;B&quot;
+   ,&quot;class&quot;: &quot;B&quot;
+   ,&quot;name&quot;: &quot;B&quot;
+};
+
+
+// Add link
+var linkObject = {
+    &quot;source&quot;: nodeObjectA.id,
+    &quot;target&quot;: nodeObjectB.id,
+    &quot;linkclass&quot;: &quot;dotted&quot;
+}
+
+graphController.addNode(nodeObjectA);
+graphController.addNode(nodeObjectB);
+graphController.addLink(linkObject);
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="D3GraphController.findLink">
+<tt class="descclassname">D3GraphController.</tt><tt class="descname">findLink</tt><big>(</big><em>linkObject</em><big>)</big><a class="headerlink" href="#D3GraphController.findLink" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find link by link object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
+<li><strong>linkObject</strong> (<em>object</em>) &#8211; Should contain <em>source</em> and <em>target</em></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">If found the link object is returned.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>nodeObjectA = {&quot;id&quot;: &quot;A&quot;}
+nodeObjectB = {&quot;id&quot;: &quot;B&quot;}
+...
+var linkObject = {&quot;source&quot;: nodeObjectA, &quot;target&quot;: nodeObjectB}
+searched_link = findLink(linkObject)
+...
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="D3GraphController.getNodes">
+<tt class="descclassname">D3GraphController.</tt><tt class="descname">getNodes</tt><big>(</big><big>)</big><a class="headerlink" href="#D3GraphController.getNodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get array of nodes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Array containing all node objects</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="D3GraphController.getLinks">
+<tt class="descclassname">D3GraphController.</tt><tt class="descname">getLinks</tt><big>(</big><big>)</big><a class="headerlink" href="#D3GraphController.getLinks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get array of links.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Array containing all link objects</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="D3GraphController.update">
+<tt class="descclassname">D3GraphController.</tt><tt class="descname">update</tt><big>(</big><big>)</big><a class="headerlink" href="#D3GraphController.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update graph. Wrapper for <em>D3Graph.update()</em>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="D3GraphController.start">
+<tt class="descclassname">D3GraphController.</tt><tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#D3GraphController.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start graph. Wrapper for <em>D3Graph.start()</em>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lib.TCPServer">
+<span id="tcpserver"></span><h1>TCPServer<a class="headerlink" href="#module-lib.TCPServer" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-TCPServer"></span><dl class="class">
+<dt id="lib.TCPServer.JSONServer">
+<em class="property">class </em><tt class="descclassname">lib.TCPServer.</tt><tt class="descname">JSONServer</tt><big>(</big><em>host</em>, <em>port</em>, <em>in_queue=&lt;queue.Queue object at 0x7fcade9bd5f8&gt;</em><big>)</big><a class="headerlink" href="#lib.TCPServer.JSONServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>TCP Server waiting for JSON packets</p>
+<dl class="method">
+<dt id="lib.TCPServer.JSONServer.start">
+<tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.TCPServer.JSONServer.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts JSON server</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lib.TCPServer.TCPServer">
+<em class="property">class </em><tt class="descclassname">lib.TCPServer.</tt><tt class="descname">TCPServer</tt><big>(</big><em>server_address</em>, <em>RequestHandlerClass</em>, <em>in_queue=&lt;queue.Queue object at 0x7fcade9ef7f0&gt;</em><big>)</big><a class="headerlink" href="#lib.TCPServer.TCPServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Custom TCP server</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lib.TCPServer.TCPServerHandler">
+<em class="property">class </em><tt class="descclassname">lib.TCPServer.</tt><tt class="descname">TCPServerHandler</tt><big>(</big><em>request</em>, <em>client_address</em>, <em>server</em><big>)</big><a class="headerlink" href="#lib.TCPServer.TCPServerHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Waiting for incoming (JSON) data</p>
+<dl class="method">
+<dt id="lib.TCPServer.TCPServerHandler.handle">
+<tt class="descname">handle</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.TCPServer.TCPServerHandler.handle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for incoming JSON packets and pre-process them</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lib.TCPServer.TCPServerHandler.process_data">
+<tt class="descname">process_data</tt><big>(</big><em>data</em><big>)</big><a class="headerlink" href="#lib.TCPServer.TCPServerHandler.process_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process received data</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>data(bytes): Incoming data</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lib.WebSocketServer">
+<span id="websocketserver"></span><h1>WebSocketServer<a class="headerlink" href="#module-lib.WebSocketServer" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-WebSocket"></span><dl class="class">
+<dt id="lib.WebSocketServer.Application">
+<em class="property">class </em><tt class="descclassname">lib.WebSocketServer.</tt><tt class="descname">Application</tt><a class="headerlink" href="#lib.WebSocketServer.Application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tornado application</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lib.WebSocketServer.IndexPageHandler">
+<em class="property">class </em><tt class="descclassname">lib.WebSocketServer.</tt><tt class="descname">IndexPageHandler</tt><big>(</big><em>application</em>, <em>request</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lib.WebSocketServer.IndexPageHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default index page handler. Not implemented yet.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lib.WebSocketServer.WebSocketHandler">
+<em class="property">class </em><tt class="descclassname">lib.WebSocketServer.</tt><tt class="descname">WebSocketHandler</tt><big>(</big><em>application</em>, <em>request</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle default WebSocket connections</p>
+<dl class="method">
+<dt id="lib.WebSocketServer.WebSocketHandler.on_close">
+<tt class="descname">on_close</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketHandler.on_close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connection was closed</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lib.WebSocketServer.WebSocketHandler.on_message">
+<tt class="descname">on_message</tt><big>(</big><em>message</em><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketHandler.on_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data income event callback</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lib.WebSocketServer.WebSocketHandler.open">
+<tt class="descname">open</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketHandler.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>New connection has been established</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lib.WebSocketServer.WebSocketServer">
+<em class="property">class </em><tt class="descclassname">lib.WebSocketServer.</tt><tt class="descname">WebSocketServer</tt><big>(</big><em>host</em>, <em>port</em>, <em>in_queue=&lt;queue.Queue object at 0x7fcadddf17b8&gt;</em><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create tornado HTTP server serving our application</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Uses tornado as backend.</p>
+</div>
+<dl class="method">
+<dt id="lib.WebSocketServer.WebSocketServer.collect_data">
+<tt class="descname">collect_data</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketServer.collect_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait for data  in individual thread</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lib.WebSocketServer.WebSocketServer.collector_process_data">
+<tt class="descname">collector_process_data</tt><big>(</big><em>data</em><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketServer.collector_process_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process incoming data and send it to all available clients</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>data: Received data</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="lib.WebSocketServer.WebSocketServer.start">
+<tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketServer.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the server</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The server will listen for incoming JSON packets and pass them
+to all clients connected to the WebSocket.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="lib.WebSocketServer.WebSocketServer.start_collector">
+<tt class="descname">start_collector</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketServer.start_collector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts collecting packages</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="lib.WebSocketServer.WebSocketServer.start_server">
+<tt class="descname">start_server</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.WebSocketServer.WebSocketServer.start_server" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the HTTP server</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-lib.WebServer">
+<span id="webserver"></span><h1>WebServer<a class="headerlink" href="#module-lib.WebServer" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-WebServer"></span><dl class="class">
+<dt id="lib.WebServer.Application">
+<em class="property">class </em><tt class="descclassname">lib.WebServer.</tt><tt class="descname">Application</tt><a class="headerlink" href="#lib.WebServer.Application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create new Flask application using Tornado&#8217;s WSGIContainer</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lib.WebServer.HTTPServer">
+<em class="property">class </em><tt class="descclassname">lib.WebServer.</tt><tt class="descname">HTTPServer</tt><big>(</big><em>host</em>, <em>port</em><big>)</big><a class="headerlink" href="#lib.WebServer.HTTPServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple http server using Tornado</p>
+<dl class="method">
+<dt id="lib.WebServer.HTTPServer.start_server">
+<tt class="descname">start_server</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.WebServer.HTTPServer.start_server" title="Permalink to this definition">¶</a></dt>
+<dd><p>Server will start a new thread and listen for incoming connections</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="lib.WebServer.HelloHandler">
+<em class="property">class </em><tt class="descclassname">lib.WebServer.</tt><tt class="descname">HelloHandler</tt><big>(</big><em>application</em>, <em>request</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#lib.WebServer.HelloHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dummy request handler</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="lib.WebServer.WebServer">
+<em class="property">class </em><tt class="descclassname">lib.WebServer.</tt><tt class="descname">WebServer</tt><big>(</big><em>host</em>, <em>port</em><big>)</big><a class="headerlink" href="#lib.WebServer.WebServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Web server for main application</p>
+<dl class="method">
+<dt id="lib.WebServer.WebServer.start">
+<tt class="descname">start</tt><big>(</big><big>)</big><a class="headerlink" href="#lib.WebServer.WebServer.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the web server in own thread</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-web.FlaskApp">
+<span id="flask-application"></span><h1>Flask application<a class="headerlink" href="#module-web.FlaskApp" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-FlaskApp"></span><dl class="class">
+<dt id="web.FlaskApp.FlaskApp">
+<em class="property">class </em><tt class="descclassname">web.FlaskApp.</tt><tt class="descname">FlaskApp</tt><a class="headerlink" href="#web.FlaskApp.FlaskApp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use Flask for better routes and temlating handling</p>
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to netgrafio&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#components">Components</a></li>
+<li><a class="reference internal" href="#quickstart">Quickstart</a></li>
+<li><a class="reference internal" href="#d3-graph">D3 Graph</a></li>
+<li><a class="reference internal" href="#module-lib.TCPServer">TCPServer</a></li>
+<li><a class="reference internal" href="#module-lib.WebSocketServer">WebSocketServer</a></li>
+<li><a class="reference internal" href="#module-lib.WebServer">WebServer</a></li>
+<li><a class="reference internal" href="#module-web.FlaskApp">Flask application</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="apidoc/web.html"
+                        title="next chapter">web package</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="apidoc/web.html" title="web package"
+             >next</a> |</li>
+        <li><a href="#">netgrafio 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Victor Dorneanu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

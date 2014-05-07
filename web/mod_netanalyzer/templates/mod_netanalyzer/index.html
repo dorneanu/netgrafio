@@ -1,0 +1,151 @@
+{% extends "core/layout.html" %}
+{% block custom_head %}
+
+    <!-- Page-Level Plugin CSS -->
+    <link href="{{ url_for('static', filename='css/plugins/morris/morris-0.4.3.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/dataTables/dataTables.bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/google-code-prettify/prettify.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/plugins/notifIt/notifIt.css') }}" rel="stylesheet">
+    <link href="{{ url_for('mod_netanalyzer.static', filename='css/d3-traffic-analysis.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+{% block main %}
+
+	<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Real-time network traffic analysis</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    D3 Graph
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div id="d3-force-directed-graph"></div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Informational stuff
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#intro" data-toggle="tab">Intro</a></li>
+                        <li><a href="#run" data-toggle="tab">Run</a></li>
+                        <li><a href="#collect-data" data-toggle="tab">Collect data</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                        <div class="tab-content">
+                        <div class="tab-pane fade in active" id="intro">
+                            <h4>Intro</h4>
+                            <p>This graph will show the connections between your several hosts which are represented by circles.
+                               Everytime a connection is active that specific link will be highlighted and will change color.
+                               This way you'll be able to track and monitor your network activity visually.
+                            </p>
+                            <p>Keep in mind that every connection is <b>directed</b> that means network traffic could also flow in only
+                               one direction. The direction of the traffic flow itself is shown by an arrow.
+                            </p>
+                            <p>Below you'll find a <b>table</b> containing all connections: Source, target and also
+                                number of  connection occurences. The table will update everytime a new connection (link) is being added to the graph. The search functionality won't work properly until you stop adding data to your graph.
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="run">
+                            <h4>Run</h4>
+                            <p>In order to populate your graph your data you'll have to follow some specific steps.</p>
+                            <ol>
+                                <li>Start netgrafio</li>
+                                <li>Define your data source</li>
+                                <li>Send that data to netgrafio</li>
+                            </ol>
+                            Your <b>data</b> source could be:
+                             <ul>
+                                <li>pcap file</li>
+                                <li>network interface</li>
+                                <li>whatever</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="collect-data">
+                            <h4>Collecting data</h4>
+                            <p>You'll need some data to visualize. Open a shell and paste this into it (make sure you adapt the command line to your system, e.g. change the NIC interface name):</p>
+                            <pre class="prettyprint" >$ tshark -l -i wlan0 -T fields -e ip.src_host -e ip.dst_host > /dev/null 2>&1 | stdbuf -oL awk -f web/mod_netanalyzer/scripts/src-dst.awk | egrep -v --line-buffered "Capturing" |  stdbuf -oL sed 's/"/\\"/g' | xargs -n 1 -I % sh -c "echo '%' | nc localhost 8081; sleep 0.2"
+                            </pre>
+                            Or you could read data from some </b>pcap</b> file:
+                            <pre class="prettyprint">$ tshark -l -T fields -e ip.src_host -e ip.dst_host -r file.pcap | uniq | awk -f web/mod_netanalyzer/scripts/src-dst.awk > /tmp/pcap.log
+                            </pre>
+                            And then import data:
+                            <pre class="prettyprint">$ while read line; do echo $line | nc localhost 8081; sleep 0.2; done < /tmp/pcap.log
+                            </pre>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Connection Table
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive" id="d3-table">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+{% endblock %}
+
+{% block custom_scripts %}
+
+    <!-- Page-Level Plugin Scripts -->
+    <script src="{{ url_for('static', filename='js/plugins/morris/raphael-2.1.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/morris/morris.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/D3/d3.v3.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/D3/d3.graph.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/dataTables/jquery.dataTables.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/dataTables/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plugins/google-code-prettify/prettify.js') }}"></script>
+
+    <!-- Page-Level Demo Scripts -->
+    <script src="{{ url_for('mod_netanalyzer.static', filename='js/d3-traffic-analysis.js') }}"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').dataTable();
+    });
+    </script>
+    <script>
+    !function ($) {
+        $(function(){
+            window.prettyPrint && prettyPrint()
+        })
+    }(window.jQuery)
+    </script>
+
+{% endblock %}

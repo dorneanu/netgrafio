@@ -1,0 +1,39 @@
+  .node {
+  fill: #CCC;
+  color: #000;
+  stroke-width: 1.5px;
+}
+
+/* Remove this to display node ids */
+.node text {
+  display: none;
+}
+
+path.link {
+  stroke: #CCC;
+  stroke-width: 1px;
+  opacity: 0.6;
+  cursor: default;
+}
+
+path.link.active,
+path.active {
+  stroke: #FF00FF;
+}
+
+path.inactive {
+  stroke: #CCC;
+  z-index: 1;
+}
+
+marker#end {
+  fill: #000;
+  z-index: 999;
+}
+
+circle {
+  stroke: #000;
+  stroke-width: 1.5px;
+  z-index: 999;
+}
+

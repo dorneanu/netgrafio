@@ -1,0 +1,53 @@
+.node {
+  fill: #FD0;
+  color: #000;
+  stroke: #FD00000;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  display: none;
+}
+
+.node.first text,
+.node.last text {
+  fill: #000;
+  pointer-events: none;
+  font: 15px sans-serif;
+  stroke-width: 0px;
+  font-size: 11px;
+  display: block;
+}
+
+
+
+path.link {
+  fill: #CCC;
+  stroke: #CCC;
+  stroke-width: 1px;
+  opacity: 0.6;
+  cursor: default;
+}
+
+marker#end {
+  fill: #000;
+  z-index: 999;
+}
+
+circle {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.node.first circle {
+  fill: #FD0000;
+  color: #000;
+  stroke: #FD00000;
+  stroke-width: 1.5px;
+}
+
+.node.last circle {
+  fill: #000;
+  stroke: #000;
+  stroke-width: 6px;
+}
