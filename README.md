@@ -37,6 +37,10 @@ Its not perfect and it might be buggy. But it works for me :v:
 
 ![netgrafio-first-page.png](http://dl.dornea.nu/img/netgrafio/netgrafio-first-page.png)
 
+# Documentation
+
+Make sure you'll have a look at the official documentation available at [http://netgrafio.readthedocs.org/](http://netgrafio.readthedocs.org/).
+
 
 ### Screenshots
 

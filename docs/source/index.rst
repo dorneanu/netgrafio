@@ -40,6 +40,7 @@ In order to understand how **netgrafio** works have a look at the following grap
       FlaskApp -> "web/mod_*/*"
    }
 
+
 Quickstart
 =========================
 
@@ -285,6 +286,23 @@ Flask application
 .. automodule:: web.FlaskApp
     :members:
 
+
+Screenshots
+=========================
+
+.. figure:: images/netgrafio_mod_traceroute.png
+
+  *Do a traceroute using netgrafio*
+
+
+.. figure:: images/netgrafio_mod_analysis.png
+
+  *Analyze your network traffic (LIVE!)*
+
+
+.. figure:: images/netgrafio_mod_nmap.png
+
+  *Visualize your NMap scanning results*
 
 
 Indices and tables
