@@ -37,7 +37,7 @@ Its not perfect and it might be buggy. But it works for me :v:
 
 ![netgrafio-first-page.png](http://dl.dornea.nu/img/netgrafio/netgrafio-first-page.png)
 
-# Documentation
+## Documentation
 
 Make sure you'll have a look at the official documentation available at [http://netgrafio.readthedocs.org/](http://netgrafio.readthedocs.org/).
 
@@ -61,6 +61,9 @@ In order to transfer data from one socket to the another a (deadlock free) queue
 
 
 ### Run me
+
+All the relevant steps are shown in this [showterm](http://showterm.io/819e4458f5c3b43c84e8d).
+
 
 #### System requirements
 
