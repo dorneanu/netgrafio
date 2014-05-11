@@ -47,8 +47,17 @@ Make sure you'll have a look at the official documentation available at [http://
 ![netgrafio-module-analysis.png](http://dl.dornea.nu/img/netgrafio/netgrafio-module-analysis.png)
 The network analysis module.
 
-![netgrafio-module-nmap.png](http://dl.dornea.nu/img/netgrafio/netgrafio-module-nmap.png)
+![netgrafio-module-nmap.png](http://dl.dornea.nu/img/netgrafio/netgrafio-module-nmap-results.png)
 Visualize nmap results.
+
+### Videos
+
+[![netgrafio - traceroute module](http://img.youtube.com/vi/TpgvQqtE0vU/0.jpg)](https://www.youtube.com/watch?v=TpgvQqtE0vU)
+
+[![netgrafio - network analysis module](http://img.youtube.com/vi/GgKKr3pH1go/0.jpg)](https://www.youtube.com/watch?v=GgKKr3pH1go)
+
+[![netgrafio - nmap results module](http://img.youtube.com/vi/5XhawZkFd-8/0.jpg)](https://www.youtube.com/watch?v=5XhawZkFd-8)
+
 
 ### Basic idea
 
@@ -62,7 +71,7 @@ In order to transfer data from one socket to the another a (deadlock free) queue
 
 ### Run me
 
-All the relevant steps are shown in this [showterm](http://showterm.io/819e4458f5c3b43c84e8d).
+> All the relevant steps are shown in this [showterm](http://showterm.io/819e4458f5c3b43c84e8d).
 
 
 #### System requirements
