@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>NetGrafio by nullsecuritynet</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>NetGrafio</h1>
+        <h2>netgrafio - Visualize your network</h2>
+        <a href="https://github.com/nullsecuritynet/netgrafio" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h1>
+
+<p>I love computer science and new technologies to play with. Besides that I like to keep things simple and pay attention
+to aspects that really mather. But I also like sharing my world and thoughts with people not involved in computer science.
+In fact technology is not dehumanizing. It's what makes us human.</p>
+
+<h3>
+<a id="why-dont-you-have-better-things-to-do" class="anchor" href="#why-dont-you-have-better-things-to-do" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why? Don't you have better things to do?</h3>
+
+<p>The whole project was basically a wish I had during some <strong>network analysis</strong>:
+I wanted to <strong>visualize</strong> my results in some fancier way. There were a lot of dependencies between several hosts
+and I'm not good at reading raw packet data. And since <strong>graphs</strong> are an excellent data structure to represent
+(computer) networks I've decided to begin my journey <img class="emoji" title=":smirk:" alt=":smirk:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f60f.png" height="20" width="20" align="absmiddle"></p>
+
+<p>During some <a href="http://d3js.org/">D3</a> experiments  I wanted to capture data from the command line and send it to my D3 application.
+Of course I could have read the data from some CSV, JSON, whatever file but that wasn't "real-time" enough. So I had a</p>
+
+<ul>
+<li>data source</li>
+<li>D3 code applying some magic to the data</li>
+</ul>
+
+<p>The <em>data source</em> in that case were some grep lines transformed to JSON data. In fact I was missing the
+linking part between mentioned components.</p>
+
+<h3>
+<a id="d3-never-heard-of" class="anchor" href="#d3-never-heard-of" aria-hidden="true"><span class="octicon octicon-link"></span></a>D3? Never heard of!</h3>
+
+<p><strong>D3</strong> stands for Data-Driven Documents. Its basically a <strong>JavaScript</strong> library aimed to manipulate "documents based on data".
+A neat side-effect of using JavaScript: You can use a <strong>browser</strong> to visualize your data. No need for extra GUI, clients whatever.
+There are douzens of useful examples how to use D3, especially force layouts which are ment to implement graphs.</p>
+
+<h1>
+<a id="meet-netgrafio" class="anchor" href="#meet-netgrafio" aria-hidden="true"><span class="octicon octicon-link"></span></a>Meet netgrafio!</h1>
+
+<p><strong>netgrafio</strong> provides more or less tools and libraries to visualize your data regardless of its type.
+I tried to make the libraries OOP-friendly but as you may know: JS and OOP is really a pain.
+In fact I had to code a lot of JS (for the first time in my life as a coder:D).
+Its not perfect and it might be buggy. But it works for me <img class="emoji" title=":v:" alt=":v:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/270c.png" height="20" width="20" align="absmiddle"></p>
+
+<p><img src="http://dl.dornea.nu/img/netgrafio/netgrafio-first-page.png" alt="netgrafio-first-page.png"></p>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<p>Make sure you'll have a look at the official documentation available at <a href="http://netgrafio.readthedocs.org/">http://netgrafio.readthedocs.org/</a>.</p>
+
+<h3>
+<a id="screenshots" class="anchor" href="#screenshots" aria-hidden="true"><span class="octicon octicon-link"></span></a>Screenshots</h3>
+
+<p><img src="http://dl.dornea.nu/img/netgrafio/netgrafio-module-analysis.png" alt="netgrafio-module-analysis.png">
+The network analysis module.</p>
+
+<p><img src="http://dl.dornea.nu/img/netgrafio/netgrafio-module-nmap-results.png" alt="netgrafio-module-nmap.png">
+Visualize nmap results.</p>
+
+<h3>
+<a id="videos" class="anchor" href="#videos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Videos</h3>
+
+<p><a href="https://www.youtube.com/watch?v=TpgvQqtE0vU"><img src="http://img.youtube.com/vi/TpgvQqtE0vU/0.jpg" alt="netgrafio - traceroute module"></a></p>
+
+<p><a href="https://www.youtube.com/watch?v=GgKKr3pH1go"><img src="http://img.youtube.com/vi/GgKKr3pH1go/0.jpg" alt="netgrafio - network analysis module"></a></p>
+
+<p><a href="https://www.youtube.com/watch?v=5XhawZkFd-8"><img src="http://img.youtube.com/vi/5XhawZkFd-8/0.jpg" alt="netgrafio - nmap results module"></a></p>
+
+<h3>
+<a id="basic-idea" class="anchor" href="#basic-idea" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic idea</h3>
+
+<p><em>netgrafio</em> listens for some data on a <strong>TCP</strong> socket and passes it through some <strong>WebSocket</strong> to all connected web clients.
+The web clients have some JS code which will receive the incoming data and apply some magic to it.</p>
+
+<blockquote>
+<p>At the moment only JSON data is supported.</p>
+</blockquote>
+
+<p>In order to transfer data from one socket to the another a (deadlock free) queue is being used (<strong>producer and consumer pattern</strong>).</p>
+
+<h3>
+<a id="run-me" class="anchor" href="#run-me" aria-hidden="true"><span class="octicon octicon-link"></span></a>Run me</h3>
+
+<blockquote>
+<p>All the relevant steps are shown in this <a href="http://showterm.io/819e4458f5c3b43c84e8d">showterm</a>.</p>
+</blockquote>
+
+<h4>
+<a id="system-requirements" class="anchor" href="#system-requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>System requirements</h4>
+
+<p>In order to run netgrafio several requirements on your system have to be met. Basically you'll need:</p>
+
+<ul>
+<li>Python 3.x</li>
+<li><a href="http://www.virtualenv.org">virtualenv</a></li>
+<li><a href="http://www.pip-installer.org/">PIP</a></li>
+</ul>
+
+<h4>
+<a id="clone-project" class="anchor" href="#clone-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Clone project</h4>
+
+<p>Make sure you have installed these packages on your system. Afterwards you can clone this project:</p>
+
+<div class="highlight highlight-bash"><pre>$ git clone https://github.com/nullsecuritynet/netgrafio
+$ <span class="pl-s3">cd</span> netgrafio</pre></div>
+
+<h4>
+<a id="setup-virtualenv" class="anchor" href="#setup-virtualenv" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setup virtualenv</h4>
+
+<p>Now you'll need to setup a isolated python environment using <em>virtualenv</em>:</p>
+
+<div class="highlight highlight-bash"><pre>$ virtualenv env
+Using base prefix <span class="pl-s1"><span class="pl-pds">'</span>/usr<span class="pl-pds">'</span></span>
+New python executable <span class="pl-k">in</span> env/bin/python3
+Also creating executable <span class="pl-k">in</span> env/bin/python
+Installing setuptools, pip...<span class="pl-k">done</span>.</pre></div>
+
+<p>Make sure to activate the virtual environment:</p>
+
+<div class="highlight highlight-bash"><pre>$ <span class="pl-s3">source</span> env/bin/activate</pre></div>
+
+<h4>
+<a id="install-additional-packages" class="anchor" href="#install-additional-packages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install additional packages</h4>
+
+<p>Having set the virtualenv environment let's install some missing packages:</p>
+
+<div class="highlight highlight-bash"><pre>$ pip install -r env/requirements.pip</pre></div>
+
+<h4>
+<a id="fire-up-netgrafio" class="anchor" href="#fire-up-netgrafio" aria-hidden="true"><span class="octicon octicon-link"></span></a>Fire up netgrafio</h4>
+
+<p>Now you're ready to start netgrafion and have some fun.</p>
+
+<p>These are the basic parameters:</p>
+
+<div class="highlight highlight-bash"><pre>python netgrafio.py -h
+usage: netgrafio.py [-h] [--tcp-port TCP_PORT] [--ws-port WS_PORT]
+                    [--web-port WEB_PORT] [--host HOST]
+
+netgrafio - visualize your network
+
+optional arguments:
+  -h, --help           show this <span class="pl-s3">help</span> message and <span class="pl-s3">exit</span>
+  --tcp-port TCP_PORT  Specify TCP port to listen <span class="pl-k">for</span> <span class="pl-vo">JSON</span> packets (default:
+                       8081)
+  --ws-port WS_PORT    Specify WebSocket port to send JSON data to (default:
+                       8080)
+  --web-port WEB_PORT  Specify web port to server web application (default:
+                       5000)
+  --host HOST          Specify host to <span class="pl-s3">bind</span> socket on (default: 127.0.0.1)
+</pre></div>
+
+<p>If you start netgrafio without any arguments, then you'll have a</p>
+
+<ul>
+<li>
+<em>TCP-Socket</em> listening on port 8081</li>
+<li>
+<em>WebSocket</em> listening on port 8080</li>
+<li>
+<em>Web-Application</em> available at http://localhost:5000</li>
+</ul>
+
+<div class="highlight highlight-bash"><pre>$ python netgrafio.py
+2014-04-24 16:18:12,984 - INFO - [WebSocketServer] - Starting WebSocket server on port 8080
+2014-04-24 16:18:12,984 - INFO - [WebSocketServer] - Start collector server
+2014-04-24 16:18:12,985 - INFO - [WebSocketServer] - Waiting <span class="pl-k">for</span> <span class="pl-vo">incoming</span> data ...
+2014-04-24 16:18:12,989 - INFO - [WebServer] - Listening on 5000
+2014-04-24 16:18:12,989 - INFO - [TCPServer] - Listening on 8081</pre></div>
+
+<p>Now open your browser and navigate to <a href="http://localhost:5000">http://localhost:5000</a></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/nullsecuritynet/netgrafio/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/nullsecuritynet/netgrafio/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/nullsecuritynet/netgrafio"></a> is maintained by <a href="https://github.com/nullsecuritynet">nullsecuritynet</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
